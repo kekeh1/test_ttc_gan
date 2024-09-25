@@ -275,9 +275,11 @@ def parse_args():
                         help='dropout ratio')
     parser.add_argument('--ema', type=float, default=0.995,
                         help='ema')
+    parser.add_argument('--seq_len', type=int, default=1000,
+                        help='seq_len')
     parser.add_argument('--ema_warmup', type=float, default=0.,
                         help='ema warm up')
-    parser.add_argument('--ema_kimg', type=int, default=500,
+    parser.add_argument('--ema_kimg', type=int, default=1000,
                         help='ema thousand images')
     parser.add_argument('--latent_norm',action='store_true',
         help='latent vector normalization')

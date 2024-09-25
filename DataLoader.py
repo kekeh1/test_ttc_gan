@@ -118,6 +118,9 @@ class REFIT_train(Dataset):
         data_0 = data_train[data_train[last_col_index] == 0]
         data_1 = data_train[data_train[last_col_index] == 1]
         data_2 = data_train[data_train[last_col_index] == 2]
+        data_3 = data_train[data_train[last_col_index] == 3]
+        data_4 = data_train[data_train[last_col_index] == 4]
+
 
 
         # data_0_resample = resample(data_0, n_samples=n_samples,
@@ -128,7 +131,7 @@ class REFIT_train(Dataset):
         #                            random_state=123, replace=True)
 
 
-        train_dataset = pd.concat((data_0, data_1, data_2))
+        train_dataset = pd.concat((data_0, data_1, data_2, data_3, data_4))
 
         self.X_train = train_dataset.iloc[:, :-1].values
         if oneD:
@@ -140,7 +143,7 @@ class REFIT_train(Dataset):
         print(f'X_train shape is {self.X_train.shape}')
         print(f'y_train shape is {self.y_train.shape}')
         print(
-            f'The dataset including {len(data_0)} class 0, {len(data_1)} class 1')
+            f'The dataset including {len(data_0)} class 0, {len(data_1)} class 1, {len(data_2)} class 2, {len(data_3)} class , {len(data_4)} class 4')
 
     def __len__(self):
         return len(self.y_train)
@@ -157,9 +160,11 @@ class REFIT_test(Dataset):
         last_col_index = data_test.shape[1] - 1
 
         # Making the class labels for our dataset
-        data_0 = data_test[data_test[last_col_index] == 1]
-        data_1 = data_test[data_test[last_col_index] == 5]
-        data_2 = data_test[data_test[last_col_index] == 7]
+        data_0 = data_test[data_test[last_col_index] == 0]
+        data_1 = data_test[data_test[last_col_index] == 1]
+        data_2 = data_test[data_test[last_col_index] == 2]
+        data_3 = data_test[data_test[last_col_index] == 3]
+        data_4 = data_test[data_test[last_col_index] == 4]
 
         # data_0_resample = resample(data_0, n_samples=n_samples,
         #                            random_state=123, replace=True)
@@ -169,7 +174,7 @@ class REFIT_test(Dataset):
         #                            random_state=123, replace=True)
 
 
-        test_dataset = pd.concat((data_0, data_1, data_2))
+        test_dataset = pd.concat((data_0, data_1, data_2, data_3, data_4))
 
         self.X_test = test_dataset.iloc[:, :-1].values
         if oneD:
@@ -181,7 +186,7 @@ class REFIT_test(Dataset):
         print(f'X_test shape is {self.X_test.shape}')
         print(f'y_test shape is {self.y_test.shape}')
         print(
-            f'The dataset including {len(data_0)} class 0, {len(data_1)} class 1, {len(data_2)} class 2')
+            f'The dataset including {len(data_0)} class 0, {len(data_1)} class 1, {len(data_2)} class 2, {len(data_3)} class 3, {len(data_4)} class 4')
 
     def __len__(self):
         return len(self.y_test)
